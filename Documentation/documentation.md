@@ -7,9 +7,9 @@
 - Maquette du projet
 
 ## Maquette
-![Page d'accueil](accueil.png)
-![Page du club](club.png)
-![Page d'admin](admin.png)
+![Page d'accueil](accueil.svg)
+![Page du club](club.svg)
+![Page d'admin](admin.svg)
 
 
 
