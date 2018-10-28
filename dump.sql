@@ -16,6 +16,23 @@
 CREATE DATABASE IF NOT EXISTS `thimes` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `thimes`;
 
+DELETE FROM `RSSSources`;
+
+CREATE TABLE IF NOT EXISTS `RSSSources` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `website` varchar(255) NOT NULL,
+  `timeBtwUpdate` int(11) DEFAULT NULL,
+  `lastUpdate` datetime DEFAULT NULL,
+  `lastSuccessUpdate` datetime DEFAULT NULL,
+  `numberAttemptFailed` int(11) DEFAULT NULL,
+  `updateMessage` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- Export de données de la table thimes.RSSSources : ~1 rows (environ)
+
+DELETE FROM `Articles`;
 -- Export de la structure de la table thimes. Articles
 CREATE TABLE IF NOT EXISTS `Articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -30,25 +47,12 @@ CREATE TABLE IF NOT EXISTS `Articles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- Export de données de la table thimes.Articles : ~0 rows (environ)
-DELETE FROM `Articles`;
+
 /*!40000 ALTER TABLE `Articles` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Articles` ENABLE KEYS */;
 
 -- Export de la structure de la table thimes. RSSSources
-CREATE TABLE IF NOT EXISTS `RSSSources` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `website` varchar(255) NOT NULL,
-  `timeBtwUpdate` int(11) DEFAULT NULL,
-  `lastUpdate` datetime DEFAULT NULL,
-  `lastSuccessUpdate` datetime DEFAULT NULL,
-  `numberAttemptFailed` int(11) DEFAULT NULL,
-  `updateMessage` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Export de données de la table thimes.RSSSources : ~1 rows (environ)
-DELETE FROM `RSSSources`;
 /*!40000 ALTER TABLE `RSSSources` DISABLE KEYS */;
 INSERT INTO `RSSSources` (`id`, `name`, `website`, `timeBtwUpdate`, `lastUpdate`, `lastSuccessUpdate`, `numberAttemptFailed`, `updateMessage`) VALUES
 	(1, 'figaro actualité', 'http://www.lefigaro.fr/rss/figaro_actualite-france.xml', NULL, NULL, NULL, NULL, NULL);
