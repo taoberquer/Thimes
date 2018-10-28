@@ -1,8 +1,3 @@
-<?php
-
-require $content;
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,10 +11,10 @@ require $content;
     <title>Thimes</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/blog-home.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 
   </head>
 
@@ -44,9 +39,7 @@ require $content;
       </div>
     </nav>
 
-
-
-
+    <?php require $content; ?>
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
@@ -57,8 +50,8 @@ require $content;
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 
