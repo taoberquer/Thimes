@@ -1,4 +1,6 @@
+<?php
 
+?>
     <!-- Page Content -->
     <div class="container">
 
