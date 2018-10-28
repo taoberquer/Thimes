@@ -16,7 +16,7 @@
 CREATE DATABASE IF NOT EXISTS `thimes` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `thimes`;
 
-DELETE FROM `RSSSources`;
+
 
 CREATE TABLE IF NOT EXISTS `RSSSources` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `RSSSources` (
 
 -- Export de données de la table thimes.RSSSources : ~1 rows (environ)
 
-DELETE FROM `Articles`;
+
 -- Export de la structure de la table thimes. Articles
 CREATE TABLE IF NOT EXISTS `Articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
