@@ -1,6 +1,6 @@
 <?php
 if (!file_exists($lockFileLocation . 'updateRss.lock')) {
-    $fp = fopen($lockFileLocation . 'updateRss.lock', "r+");
+    $fp = fopen($lockFileLocation . 'updateRss.lock', "w");
     $RssSources = $dbh->query('SELECT * FROM RSSSources')->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($RssSources as $RssSource) {
@@ -23,5 +23,6 @@ if (!file_exists($lockFileLocation . 'updateRss.lock')) {
             }
         }
     }
-    $fp = fopen($lockFileLocation . 'updateRss.lock', "r+");
+    fclose($fp);
+    unlink ($lockFileLocation . 'updateRss.lock');
 }
