@@ -13,9 +13,9 @@ catch(Exception $e)
     die("bdd non trouvée");
 }
 
-$page = "accueil";
+$page = "home";
 
-if(isset($_GET['url']))
+if(!empty($_GET['url']))
 {
     $page = $_GET['url'];
 
@@ -23,6 +23,11 @@ if(isset($_GET['url']))
     {
         $page = "notFound";
     }
+}
+
+if ($page == 'update')
+{
+    require __DIR__ . 'update.php';
 }
 
 $content =  __DIR__ . '/pages/' . $page . '.php';
