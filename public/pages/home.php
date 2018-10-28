@@ -1,64 +1,22 @@
-
-    <!-- Page Content -->
-    <div class="container">
-
-      <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
-
-          <h1 class="my-4">Liste des articles
-
-          </h1>
-
-          <!-- Blog Post -->
-          <div class="card mb-4">
-
-            <div class="card-body">
-              <h2 class="card-title">Post Title</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-              Posted on January 1, 2017 by
-              <a href="#">Start Bootstrap</a>
-            </div>
-          </div>
-
-          <!-- Blog Post -->
-          <div class="card mb-4">
-
-            <div class="card-body">
-              <h2 class="card-title">Post Title</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-              Posted on January 1, 2017 by
-              <a href="#">Start Bootstrap</a>
-            </div>
-          </div>
-
-          <!-- Blog Post -->
-          <div class="card mb-4">
-
-            <div class="card-body">
-              <h2 class="card-title">Post Title</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-              Posted on January 1, 2017 by
-              <a href="#">Start Bootstrap</a>
-            </div>
-          </div>
-
-
-
-        </div>
-
-      </div>
-      <!-- /.row -->
-
-    </div>
-    <!-- /.container -->
+<?php
+    $articles = $dbh->query('SELECT * FROM Articles')->fetchAll();
+?>
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+<h1 class="my-4">Liste des articles</h1>
+<?php foreach ($articles as $article) {?>
+<div class="card mb-4">
+<div class="card-body">
+<h2 class="card-title"><?php echo $article['title']; ?></h2>
+<p class="card-text"><?php echo $article['preview']; ?></p>
+<a href="<?php echo $article['link']; ?>" class="btn btn-primary">Voir plus</a>
+</div>
+<div class="card-footer text-muted">
+Date : <?php echo $article['date']; ?>
+</div>
+</div>
+<?php } ?>
+</div>
+</div>
+</div>
