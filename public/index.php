@@ -27,7 +27,7 @@ if(!empty($_GET['url']))
 
 if ($page == 'update')
 {
-    require __DIR__ . 'update.php';
+    require __DIR__ . '/update.php';
 }
 
 $content =  __DIR__ . '/pages/' . $page . '.php';
