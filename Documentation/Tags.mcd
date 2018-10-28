@@ -1,0 +1,12 @@
+toInherite, 0N Tags, 01 Tags
+Tags: id, name
+toAssign, 0N Tags, 11 Users
+Users: id, name, email, password, level, clubName, clubURL, logo
+
+toCategorize, 0N RSSSources, 0N Tags
+toDescribe, 0N Articles, 0N Tags
+
+RSSSources: id, name, website, timeBtwUpdate, lastUpdate, lastSuccessUpdate, numberAttemptFailed, updateMessage
+toProvide, 0N RSSSources, 11 Articles
+Articles: id, title, preview, date, link
+toSelect, 0N Users, 0N Articles
