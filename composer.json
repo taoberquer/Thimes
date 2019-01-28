@@ -31,7 +31,6 @@
         "alexgarrett/violin": "^2.2",
         "carlosocarvalho/simple-input": "^1.0",
         "symfony/process": "^3.0",
-        "respect/validation": "^1.1",
         "vlucas/phpdotenv": "^3.3"
     },
     "scripts": {
