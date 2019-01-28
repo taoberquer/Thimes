@@ -37,10 +37,10 @@ return [
         //database
         'database' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'database'  => 'slim_project',
-            'username'  => 'root',
-            'password'  => '',
+            'host'      => getenv('DB_HOST') ?: 'localhost',
+            'database'  => 'thimes',
+            'username'  => getenv('DB_USERNAME') ?: 'root',
+            'password'  => getenv('DB_PASSWORD') ?: '',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
