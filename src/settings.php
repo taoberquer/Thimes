@@ -22,9 +22,9 @@ return [
         'db' => [
             'driver' => 'pgsql',
             'host' => 'localhost',
-            'database' => 'database',
-            'username' => 'user',
-            'password' => 'password',
+            'database' => 'thimes',
+            'username' => 'dev',
+            'password' => 'thimes1234',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
