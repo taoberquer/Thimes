@@ -1,5 +1,13 @@
-/vendor/
-/logs/*
-!/logs/README.md
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
 .idea
 .DS_Store
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log

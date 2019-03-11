@@ -1,30 +1,60 @@
 <?php
-if (PHP_SAPI == 'cli-server') {
-    // To help the built-in PHP dev server, check if the request was actually for
-    // something which should probably be served as a static file
-    $url  = parse_url($_SERVER['REQUEST_URI']);
-    $file = __DIR__ . $url['path'];
-    if (is_file($file)) {
-        return false;
-    }
-}
 
-require __DIR__ . '/../vendor/autoload.php';
+/**
+ * Laravel - A PHP Framework For Web Artisans
+ *
+ * @package  Laravel
+ * @author   Taylor Otwell <taylor@laravel.com>
+ */
 
-session_start();
+define('LARAVEL_START', microtime(true));
 
-// Instantiate the app
-$settings = require __DIR__ . '/../src/settings.php';
-$app = new \Slim\App($settings);
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels great to relax.
+|
+*/
 
-// Set up dependencies
-require __DIR__ . '/../src/dependencies.php';
+require __DIR__.'/../vendor/autoload.php';
 
-// Register middleware
-require __DIR__ . '/../src/middleware.php';
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let us turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight our users.
+|
+*/
 
-// Register routes
-require __DIR__ . '/../src/routes.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-// Run app
-$app->run();
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
+
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+
+$response->send();
+
+$kernel->terminate($request, $response);
