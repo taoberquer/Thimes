@@ -1,8 +1,4 @@
-version: '2'
-
-volumes:
-    logs:
-        driver: local
+version: '3'
 
 services:
     slim:
@@ -16,3 +12,20 @@ services:
         volumes:
             - .:/var/www
             - logs:/var/www/logs
+    db:
+      image: postgres:11-alpine
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: example
+      volumes:
+        - db_data:/var/lib/postgresql/data
+
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8090:8080
+
+volumes:
+    logs:
+    db_data:
