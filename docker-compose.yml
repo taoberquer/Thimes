@@ -16,7 +16,13 @@ services:
       image: postgres:11-alpine
       restart: always
       environment:
+<<<<<<< HEAD
         POSTGRES_PASSWORD:
+=======
+        POSTGRES_DB: thimes
+        POSTGRES_USER: dev
+        POSTGRES_PASSWORD: thimes1234
+>>>>>>> ab7cd9d05aa96b70f05df6318221071a811c2196
       volumes:
         - db_data:/var/lib/postgresql/data
 
