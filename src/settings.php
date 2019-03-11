@@ -20,7 +20,7 @@ return [
         'determineRouteBeforeAppMiddleware' => false,
         'displayErrorDetails' => true,
         'db' => [
-            'driver' => 'mysql',
+            'driver' => 'pgsql',
             'host' => 'localhost',
             'database' => 'database',
             'username' => 'user',
