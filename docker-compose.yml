@@ -16,7 +16,7 @@ services:
       image: postgres:11-alpine
       restart: always
       environment:
-        POSTGRES_PASSWORD: example
+        POSTGRES_PASSWORD:
       volumes:
         - db_data:/var/lib/postgresql/data
 

@@ -1,27 +1,55 @@
-# Slim Framework 3 Skeleton Application
+# Thimes
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+Thimes est une application web qui permet de recupèrer régulièrement des articles disponible au format RSS.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+Chaque club, associé à un compte peut ajout des articles dans une liste qui lui appartient et qui sera nommée « press-book ». Cette liste est visible par tout le monde.
 
-## Install the Application
+Tous les clubs sont associés à un sport, parmi une liste de sports pré-définie et fixée à l’avance. Certains flux peuvent être associés à un sport. Dans ce cas tous les articles de ce flux sont associés à ce sport.
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+Les utilisateurs peuvent parcourir les articles, accéder directement à l’article d’origine depuis la liste présentée, ajouter ou supprimer un article de son press-book et étiquetter un article avec un mot. Les articles sont automatiquement associés au sport du club.
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+Les utilisateurs peuvent consulter leur press-book et aussi lister les autres utilisateurs et visualiser leur press-book.
+## Installation de l'application
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+Executer cette commande dans le dossier de l'application Thimes pour télécharger toute les dépendances.
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+    php composer install
+### docker
 
-To run the application in development, you can run these commands 
+Le docker-compose se compose de ce qui suis.
 
-	cd [my-app-name]
-	php composer.phar start
+    version: '3'
 
-Run this command in the application directory to run the test suite
+    services:
+      slim:
+          image: php:7-alpine
+          working_dir: /var/www
+          command: php -S 0.0.0.0:8080 -t public
+          environment:
+              docker: "true"
+          ports:
+              - 8080:8080
+          volumes:
+              - .:/var/www
+              - logs:/var/www/logs
+      db:
+        image: postgres:11-alpine
+        restart: always
+        environment:
+          POSTGRES_PASSWORD:
+        volumes:
+          - db_data:/var/lib/postgresql/data
 
-	php composer.phar test
+      adminer:
+        image: adminer
+        restart: always
+        ports:
+          - 8090:8080
 
-That's it! Now go build something cool.
+          volumes:
+          logs:
+          db_data:
+
+Pour exécuter l'application rendez-vous dans le dossier Thimes et lancer cette commande.
+
+    docker-compose up
