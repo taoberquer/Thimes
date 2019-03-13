@@ -14,8 +14,8 @@ class CreateFluxSportsTable extends Migration
     public function up()
     {
         Schema::create('flux_sports', function (Blueprint $table) {
-            $table->unsignedInteger('flux_id');
-            $table->unsignedInteger('sport_id');
+            $table->unsignedBigInteger('flux_id');
+            $table->unsignedBigInteger('sport_id');
             $table->timestamps();
         });
     }
