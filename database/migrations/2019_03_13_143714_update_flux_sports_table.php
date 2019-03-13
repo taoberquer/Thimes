@@ -27,7 +27,7 @@ class UpdateFluxSportsTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('flux_sports', function (Blueprint $table) {
             $table->dropForeign('flux_sports_flux_id_foreign');
             $table->dropForeign('flux_sports_sport_id_foreign');
             $table->dropPrimary('flux_sports_flux_id_sport_id_primary');

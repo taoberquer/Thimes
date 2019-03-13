@@ -28,7 +28,7 @@ class UpdateArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->dropForeign('articles_flux_id_foreign');
-            $table->dropForeign('articles_flux_batch_id_foreign');
+            $table->dropForeign('articles_flux_batch_foreign');
         });
 
     }
