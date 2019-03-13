@@ -25,6 +25,8 @@ class UpdateFluxBatchesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropForeign('flux_batches_flux_id_foreign');
+        });
     }
 }
