@@ -15,14 +15,14 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('flux_id');
+            $table->unsignedBigInteger('flux_id');
             $table->char('title');
             $table->text('description');
             $table->char('guid');
             $table->text('url');
             $table->char('source');
             $table->dateTime('pub_date');
-            $table->unsignedInteger('flux_batch');
+            $table->unsignedBigInteger('flux_batch');
             $table->char('hash');
             $table->timestamps();
         });
