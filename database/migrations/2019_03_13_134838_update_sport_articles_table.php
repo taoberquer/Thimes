@@ -28,6 +28,11 @@ class UpdateSportArticlesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropForeign('sport_articles_sport_id_foreign');
+            $table->dropForeign('sport_articles_club_id_foreign');
+            $table->dropForeign('sport_articles_article_id_foreign');
+            $table->dropForeign('sport_articles_user_id_foreign');
+        });
     }
 }
