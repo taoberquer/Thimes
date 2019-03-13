@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->text('url');
             $table->char('source');
             $table->dateTime('pub_date');
-            $table->integer('flux_batch');
+            $table->unsignedInteger('flux_batch');
             $table->char('hash');
             $table->timestamps();
         });
