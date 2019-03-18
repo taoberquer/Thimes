@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class FluxBatch extends Model
@@ -11,27 +12,22 @@ class FluxBatch extends Model
          'success'
       ];
 
-    public function getId()
+    public function getId() :int
     {
         return $this->id;
     }
 
-    public function getFluxId()
-    {
-        return $this->flux_id;
-    }
-
-    public function getStartedAt()
+    public function getStartedAt() :Carbon
     {
         return $this->started_at;
     }
 
-    public function getEndedAt()
+    public function getEndedAt() :Carbon
     {
         return $this->ended_at;
     }
 
-    public function getSuccess()
+    public function isSuccess() :bool
     {
         return $this->success;
     }
