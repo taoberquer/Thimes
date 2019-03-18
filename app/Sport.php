@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sport extends Model
 {
     protected $hidden = [
-         'id', 'sport_id', 'club_id','article_id',
-         'user_id'
+         'id', 'name'
+
       ];
 
     public function getId()
@@ -16,23 +16,8 @@ class Sport extends Model
         return $this->id;
     }
 
-    public function getSportId()
+    public function getName()
     {
-        return $this->sport_id;
-    }
-
-    public function getClubId()
-    {
-        return $this->club_id;
-    }
-
-    public function getArticleId()
-    {
-        return $this->article_id;
-    }
-
-    public function getUserId()
-    {
-        return $this->user_id;
+        return $this->name;
     }
 }
