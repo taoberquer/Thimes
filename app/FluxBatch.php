@@ -12,22 +12,22 @@ class FluxBatch extends Model
          'success'
       ];
 
-    public function getId() :int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getStartedAt() :Carbon
+    public function getStartedAt(): Carbon
     {
         return $this->started_at;
     }
 
-    public function getEndedAt() :Carbon
+    public function getEndedAt(): Carbon
     {
         return $this->ended_at;
     }
 
-    public function isSuccess() :bool
+    public function isSuccess(): bool
     {
         return $this->success;
     }
