@@ -13,14 +13,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User([
-            'username' => 'test',
+            'name' => 'test',
             'email' => 'test@test.com',
             'password' => bcrypt('test'),
         ]);
         $user->save();
 
         $user = new User([
-            'username' => 'admin',
+            'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'status' => 'admin',
