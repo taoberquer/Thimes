@@ -15,3 +15,4 @@ class SportArticle extends Model
     {
         return $this->id;
     }
+}
