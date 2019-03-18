@@ -11,28 +11,28 @@ class FluxBatch extends Model
          'success'
       ];
 
-      public function getId()
-      {
-          return $this->id;
-      }
+    public function getId()
+    {
+        return $this->id;
+    }
 
-      public function getFluxId()
-      {
-          return $this->flux_id;
-      }
+    public function getFluxId()
+    {
+        return $this->flux_id;
+    }
 
-      public function getStartedAt()
-      {
-          return $this->started_at;
-      }
+    public function getStartedAt()
+    {
+        return $this->started_at;
+    }
 
-      public function getEndedAt()
-      {
-          return $this->ended_at;
-      }
+    public function getEndedAt()
+    {
+        return $this->ended_at;
+    }
 
-      public function getSuccess()
-      {
-          return $this->success;
-      }
+    public function getSuccess()
+    {
+        return $this->success;
+    }
 }
