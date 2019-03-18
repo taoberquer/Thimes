@@ -10,12 +10,12 @@ class ClubSport extends Model
        'club_id', 'sport_id'
     ];
 
-    public function getClubId()
+    public function getClubId(): int
     {
         return $this->club_id;
     }
 
-    public function getSportId()
+    public function getSportId(): int
     {
         retunr $this->sport_id;
     }
