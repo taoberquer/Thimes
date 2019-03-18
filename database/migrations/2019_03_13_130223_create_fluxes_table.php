@@ -18,8 +18,8 @@ class CreateFluxesTable extends Migration
             $table->char('title');
             $table->text('url');
             $table->integer('ttl');
-            $table->boolean('active');
-            $table->dateTime('date_success');
+            $table->boolean('active')->default(true);
+            $table->dateTime('date_success')->useCurrent();
             $table->timestamps();
         });
     }
