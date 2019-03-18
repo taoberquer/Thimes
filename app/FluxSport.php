@@ -10,12 +10,12 @@ class FluxSport extends Model
          'flux-id', 'sport_id'
       ];
 
-    public function getFluxId()
+    public function getFluxId(): int
     {
         return $this->flux_id;
     }
 
-    public function getSportId()
+    public function getSportId(): int
     {
         return $this->sport_id;
     }
