@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Article extends Model
 {
@@ -13,52 +14,42 @@ class Article extends Model
      'flux_batch', 'hash'
     ];
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getFluxId()
-    {
-        return $this->flux_id;
-    }
-
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getGuid()
+    public function getGuid(): string
     {
         return $this->guid;
     }
 
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function getSource()
+    public function getSource(): string
     {
         return $this->source;
     }
 
-    public function getPubDate()
+    public function getPubDate(): Carbon
     {
         return $this->pub_date;
     }
 
-    public function getFluxBatch()
-    {
-        return $this->flux_batch;
-    }
-
-    public function getHash()
+    public function getHash(): string
     {
         return $this->hash;
     }
