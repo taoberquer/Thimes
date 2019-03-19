@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Flux;
 use Illuminate\Console\Command;
 
 class UpdateRss extends Command
@@ -37,6 +38,8 @@ class UpdateRss extends Command
      */
     public function handle()
     {
-        //
+        $flux = Flux::all()->first();
+        $rss = \Feed::loadRss($flux->getUrl());
+        dd($rss);
     }
 }

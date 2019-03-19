@@ -16,9 +16,9 @@ class CreateFluxBatchesTable extends Migration
         Schema::create('flux_batches', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('flux_id');
-            $table->dateTime('started_at');
-            $table->dateTime('ended_at');
-            $table->boolean('success');
+            $table->dateTime('started_at')->useCurrent();
+            $table->dateTime('ended_at')->nullable();
+            $table->boolean('success')->default(false);
             $table->timestamps();
         });
     }

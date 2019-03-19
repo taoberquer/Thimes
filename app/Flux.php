@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Validator;
 use Illuminate\Database\Eloquent\Model;
 
 class Flux extends Model
@@ -44,32 +45,30 @@ class Flux extends Model
 
     public function canBeLoaded(): bool
     {
-        if (!$this->isActive()) {
+        if (!$this->isActive() or !$this->isTTLBeenPassed()) {
             return false;
         }
 
-    //    if () {
-    //        return true;
-    //    }
+        return true;
     }
 
     protected function isTTLBeenPassed(): bool
     {
         $lastCreatedFluxBatch = $this->getLastCreatedFluxBatch();
-
         if (!empty($lastCreatedFluxBatch)) {
-            if ($lastCreatedFluxBatch->getSuccess()) {
-                if ($lastCreatedFluxBatch->getEndedAt()) {
+            if ($lastCreatedFluxBatch->isSuccess()) {
+                if ($lastCreatedFluxBatch->getEndedAt()->diffInMinutes(new Carbon()) < $this->getTTL()) {
+                    return false;
                 }
             }
-
-            return true;
         }
+
+        return true;
     }
 
-    protected function getLastCreatedFluxBatch(): FluxBatch
+    protected function getLastCreatedFluxBatch(): ?FluxBatch
     {
-        $lastestFluxBatch = $this->hasManyFluxBatch()->latest();
+        $lastestFluxBatch = $this->hasManyFluxBatch()->orderByDesc('id')->first();
 
         if (!empty($lastestFluxBatch)) {
             return $lastestFluxBatch;
@@ -80,10 +79,10 @@ class Flux extends Model
 
     protected function hasManyFluxBatch()
     {
-        return $this->hasMany('App\FluxBatch', 'id', 'flux_id');
+        return $this->hasMany('App\FluxBatch');
     }
 
-    public static function findGuid($guid): Flux
+    public static function findGuid(string $guid): Flux
     {
         $flux = Flux::all()->where('guid', $guid)->first();
 
@@ -92,5 +91,10 @@ class Flux extends Model
         }
 
         return null;
+    }
+
+    public static function allAvailable()
+    {
+        return Flux::all()->where('active');
     }
 }

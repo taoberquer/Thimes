@@ -53,4 +53,9 @@ class Article extends Model
     {
         return $this->hash;
     }
+
+    public static function make(array $params)
+    {
+        echo 'coucou';
+    }
 }
