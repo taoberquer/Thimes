@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->password;
     }
 
-    public function getRememberToken(): string
+    public function getRememberToken(): ?string
     {
         return $this->remember_token;
     }
