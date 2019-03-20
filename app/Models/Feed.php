@@ -20,12 +20,17 @@ class Feed
             trigger_error(curl_error($curl));
         }
         curl_close($curl);
+
         return $rawContent;
     }
 
     public function parse($content)
     {
-        $res = simplexml_load_string($content) or die("Error: Cannot create object");
+        $res = simplexml_load_string(
+            $content,
+            'App\Models\CustomSimpleXMLElement'
+        ) or die("Error: Cannot create object");
+
         return $res;
     }
 }
