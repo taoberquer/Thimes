@@ -45,13 +45,13 @@ return [
     'gt'                   => [
         'numeric' => 'La valeur de :attribute doit être supérieure à :value.',
         'file'    => 'La taille du fichier de :attribute doit être supérieure à :value kilo-octets.',
-        'string'  => 'Le texte :attribute doit contenir plus de :value caractères.',
+        'string'  => 'Le :attribute doit contenir plus de :value caractères.',
         'array'   => 'Le tableau :attribute doit contenir plus de :value éléments.',
     ],
     'gte'                  => [
         'numeric' => 'La valeur de :attribute doit être supérieure ou égale à :value.',
         'file'    => 'La taille du fichier de :attribute doit être supérieure ou égale à :value kilo-octets.',
-        'string'  => 'Le texte :attribute doit contenir au moins :value caractères.',
+        'string'  => 'Le :attribute doit contenir au moins :value caractères.',
         'array'   => 'Le tableau :attribute doit contenir au moins :value éléments.',
     ],
     'image'                => 'Le champ :attribute doit être une image.',
@@ -65,7 +65,7 @@ return [
     'lt'                   => [
         'numeric' => 'La valeur de :attribute doit être inférieure à :value.',
         'file'    => 'La taille du fichier de :attribute doit être inférieure à :value kilo-octets.',
-        'string'  => 'Le texte :attribute doit contenir moins de :value caractères.',
+        'string'  => 'Le :attribute doit contenir moins de :value caractères.',
         'array'   => 'Le tableau :attribute doit contenir moins de :value éléments.',
     ],
     'lte'                  => [
@@ -85,7 +85,7 @@ return [
     'min'                  => [
         'numeric' => 'La valeur de :attribute doit être supérieure ou égale à :min.',
         'file'    => 'La taille du fichier de :attribute doit être supérieure à :min kilo-octets.',
-        'string'  => 'Le texte :attribute doit contenir au moins :min caractères.',
+        'string'  => 'Le :attribute doit contenir au moins :min caractères.',
         'array'   => 'Le tableau :attribute doit contenir au moins :min éléments.',
     ],
     'not_in'               => "Le champ :attribute sélectionné n'est pas valide.",
