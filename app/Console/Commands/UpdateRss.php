@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Flux;
+use App\Models\Engine;
 use Illuminate\Console\Command;
 
 class UpdateRss extends Command
@@ -38,8 +39,6 @@ class UpdateRss extends Command
      */
     public function handle()
     {
-        $flux = Flux::all()->first();
-        $rss = \Feed::loadRss($flux->getUrl());
-        dd($rss);
+        (new Engine(Flux::allAvailable()))->run();
     }
 }

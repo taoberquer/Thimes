@@ -76,7 +76,7 @@ class Article extends Model
             'author' => 'nullable',
             'comments' => 'nullable',
             'description' => 'nullable',
-            'guid' => 'nullable',
+            'guid' => 'nullable|unique:articles',
             'pubDate' => 'nullable',
             'source' => 'nullable',
 
