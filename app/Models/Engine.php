@@ -23,31 +23,18 @@ class Engine
 
         foreach ($this->fluxCollection as $flux) {
             if ($flux->canBeLoaded()) {
-                $fluxBatch = FluxBatch::make($flux->getId());
-//                $this->load($flux);
+                $this->load(FluxBatch::make($flux->getId()));
             }
-            break;
         }
     }
 
-    protected function load(Flux $flux)
+    protected function load(FluxBatch $fluxBatch)
     {
         $remoteRSSAdapter = new Feed();
-
-        foreach ($remoteRSSAdapter->get($flux->getUrl()) as $item) {
-            $this->insertArticles($item);
+        foreach ($remoteRSSAdapter->get($fluxBatch->getFlux()->getUrl())->channel->item as $item) {
+            $fluxBatch->addArticleByCustomSimpleXMLElement($item);
+            $fluxBatch->setSuccess();
         }
-    }
-
-    protected function simpleXMLElementToArray(\SimpleXMLElement $params)
-    {
-        $toReturn = [];
-
-        foreach ($params as $key => $value) {
-             array_push($toReturn, [$key => $value]);
-        }
-
-        return $toReturn;
     }
 
     protected function isRunning(): bool
