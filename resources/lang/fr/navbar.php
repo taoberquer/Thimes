@@ -3,5 +3,6 @@
 return [
 
     'login' => 'Connexion',
-    'register' => 'Inscription'
+    'register' => 'Inscription',
+    'Logout' => 'Se déconnecter'
 ];
