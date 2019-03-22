@@ -17,13 +17,16 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('flux_id');
             $table->char('title');
-            $table->text('description');
-            $table->char('guid');
             $table->text('url');
-            $table->char('source');
-            $table->dateTime('pub_date');
             $table->unsignedBigInteger('flux_batch');
             $table->char('hash');
+
+            $table->char('author')->nullable();
+            $table->text('comments')->nullable();
+            $table->text('description')->nullable();
+            $table->char('guid')->nullable();
+            $table->dateTime('pub_date')->nullable();
+            $table->char('source')->nullable();
             $table->timestamps();
         });
     }

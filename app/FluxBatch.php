@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\CustomSimpleXMLElement;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,14 +40,32 @@ class FluxBatch extends Model
         return $this->success;
     }
 
-    public function addArticles(array $params)
+    public function addArticleByCustomSimpleXMLElement(CustomSimpleXMLElement $param)
     {
-        array_push($params, [
-           'flux_id' => $this->belongsToFlux()->getId(),
-            'flux_batch_id' => $this->getId(),
-        ]);
+        $param->addChild('flux_id', $this->belongsToFlux()->getId());
+        $param->addChild('flux_batch', $this->getId());
 
-        Article::make($params);
+        $param->addChildIfDoNotExist('author');
+        $param->addChildIfDoNotExist('comments');
+        $param->addChildIfDoNotExist('guid');
+        $param->addChildIfDoNotExist('pubDate');
+        $param->addChildIfDoNotExist('source');
+
+        $param->addChild('hash', md5($param->title . $param->author . $param->link));
+
+        Article::make($param);
+    }
+
+    public function getFlux()
+    {
+        return $this->belongsToFlux();
+    }
+
+    public function setSuccess(bool $success = true)
+    {
+        $this->success = true;
+        $this->ended_at = new Carbon();
+        $this->save();
     }
 
     public static function make(int $fluxId): FluxBatch
@@ -59,6 +78,6 @@ class FluxBatch extends Model
 
     protected function belongsToFlux(): Flux
     {
-        return $this->belongsTo('App\Flux', 'flux_id', 'id');
+        return ($this->belongsTo('App\Flux', 'flux_id', 'id'))->first();
     }
 }
