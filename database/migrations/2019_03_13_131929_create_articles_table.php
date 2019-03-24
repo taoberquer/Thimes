@@ -24,9 +24,9 @@ class CreateArticlesTable extends Migration
             $table->char('author')->nullable();
             $table->text('comments')->nullable();
             $table->text('description')->nullable();
-            $table->char('guid')->nullable();
+            $table->text('guid')->nullable();
             $table->dateTime('pub_date')->nullable();
-            $table->char('source')->nullable();
+            $table->text('source')->nullable();
             $table->timestamps();
         });
     }
