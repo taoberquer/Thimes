@@ -22,7 +22,10 @@
                             <p class="post-meta">
                                 {{ __('article.postedBy', ['flux' => $article->getFlux()->getTitle()]) }}
 
-                                {{ __('article.postedThe', ['date' => $article->getPubDateWithFormat()]) }}
+                                {{ __('article.postedThe', [
+                                'date' => $article->getPubDateWithFormat(),
+                                'hour' => $article->getPubDateWithFormat('H:m')]) }}
+
                             </p>
                         </div>
                         <hr>
