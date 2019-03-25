@@ -35,7 +35,7 @@ class Article extends Model
 
     public function getDescription(): string
     {
-        return !empty($this->description)?: __('article.nodescription');
+        return !empty($this->description) ? $this->description : __('article.nodescription');
     }
 
     public function getGuid(): string
