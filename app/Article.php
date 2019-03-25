@@ -100,4 +100,9 @@ class Article extends Model
             $article->save();
         }
     }
+
+    public static function allWithPagination($offset = 0, $articlesNumber = 15)
+    {
+        return Article::all()->sortByDesc('id')->slice($offset)->take($articlesNumber);
+    }
 }
