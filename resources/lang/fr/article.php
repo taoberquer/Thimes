@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'nodescription' => 'Pas de déscription',
+    'nodescription' => 'Pas de description',
     'postedBy' => 'publié par :flux',
-    'postedThe' => 'le :date',
+    'postedThe' => 'le :date à :hour',
 ];
