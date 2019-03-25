@@ -103,6 +103,6 @@ class Article extends Model
 
     public static function allWithPagination($offset = 0, $articlesNumber = 15)
     {
-        return Article::all()->sortByDesc('id')->slice($offset)->take($articlesNumber);
+        return Article::all()->sortByDesc('pub_date')->slice($offset)->take($articlesNumber);
     }
 }
