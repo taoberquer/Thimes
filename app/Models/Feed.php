@@ -28,7 +28,8 @@ class Feed
     {
         $res = simplexml_load_string(
             $content,
-            'App\Models\CustomSimpleXMLElement'
+            'App\Models\CustomSimpleXMLElement',
+            LIBXML_NOCDATA
         ) or die("Error: Cannot create object");
 
         return $res;
