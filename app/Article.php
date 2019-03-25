@@ -35,7 +35,7 @@ class Article extends Model
 
     public function getDescription(): string
     {
-        return $this->description;
+        return !empty($this->description)?: __('article.nodescription');
     }
 
     public function getGuid(): string
@@ -55,12 +55,22 @@ class Article extends Model
 
     public function getPubDate(): Carbon
     {
-        return $this->pub_date;
+        return new Carbon($this->pub_date);
+    }
+
+    public function getPubDateWithFormat($format = 'D/M/Y')
+    {
+        return $this->getPubDate()->isoFormat($format);
     }
 
     public function getHash(): string
     {
         return $this->hash;
+    }
+
+    public function getFlux(): Flux
+    {
+        return $this->belongsToFlux();
     }
 
     public static function make(CustomSimpleXMLElement $params)
@@ -104,5 +114,10 @@ class Article extends Model
     public static function allWithPagination($offset = 0, $articlesNumber = 15)
     {
         return Article::all()->sortByDesc('id')->slice($offset)->take($articlesNumber);
+    }
+
+    protected function belongsToFlux(): Flux
+    {
+        return ($this->belongsTo('App\Flux', 'flux_id', 'id'))->first();
     }
 }
