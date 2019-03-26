@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 
+
 class HomeController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articles = Article::allWithPagination();
+        //utilisé précédemment, remplacé sortByDesc('pub_date')
+        //$articles = Article::allWithPagination();
+        $articles = Article::orderBy('pub_date', 'desc')->paginate(15);
 
         return view('home', compact('articles'));
     }
