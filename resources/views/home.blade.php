@@ -121,6 +121,9 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="pagination-bar text-center">
+                           {{ $articles->links() }}
+                    </div>
                 </div>
                 <!-- /.container -->
 @endsection
