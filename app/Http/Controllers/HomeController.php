@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Flux;
+use App\Sport;
 use Illuminate\Http\Request;
 
 
@@ -15,10 +17,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //utilisé précédemment, remplacé sortByDesc('pub_date')
-        //$articles = Article::allWithPagination();
         $articles = Article::orderBy('pub_date', 'desc')->paginate(15);
+        $fluxes = Flux::all();
+        $sports = Sport::all();
 
-        return view('home', compact('articles'));
+        return view('home', compact(['articles', 'fluxes', 'sports']));
     }
 }

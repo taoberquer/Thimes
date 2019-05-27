@@ -23,8 +23,8 @@
                                 {{ __('article.postedBy', ['flux' => $article->getFlux()->getTitle()]) }}
 
                                 {{ __('article.postedThe', [
-                                'date' => $article->getPubDateWithFormat(),
-                                'hour' => $article->getPubDateWithFormat('H:m')]) }}
+                                'date' => $article->getPubDateWithFormat('DD/MM/Y'),
+                                'hour' => $article->getPubDateWithFormat('HH:mm')]) }}
 
                             </p>
                         </div>
@@ -33,87 +33,29 @@
                     </div>
 
                     <div class="col-md-4">
-                        <!-- a voir si on garde la barre de recherche dans un aside ou on la place dans la navbar -->
-                        <div class="card my-4">
-                            <h5 class="card-header">Rechercher</h5>
-                            <div class="card-body">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Recherche pour...">
-                                    <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">Go!</button>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card my-4">
                             <h5 class="card-header">Sources</h5>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-12">
                                         <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">L'Est Républicain</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Le Républicain Lorrain</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Vosges Matin</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Les Dernières Nouvelles d’Alsace</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">L’Alsace Le Pays</a>
-                                            </li>
+                                            @foreach($fluxes as $flux)
+                                                <li><a href="#">{{ $flux->getTitle() }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card my-4">
-                            <h5 class="card-header">Catégories</h5>
+                            <h5 class="card-header">Sports</h5>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-12">
                                         <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Football</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Basketball</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Tennis</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Curling sur gazon</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Badminton</a>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="" value="" />
-                                                <a href="#">Ski</a>
-                                            </li>
+                                            @foreach($sports as $sport)
+                                                <li><a href="#">{{ $sport->getName() }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
