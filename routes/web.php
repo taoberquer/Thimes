@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/fluxes/{fluxId}', 'FluxesController@index')->name('flux.index');
 
 Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->group(function () {
     Route::middleware('club.create')->group(function () {

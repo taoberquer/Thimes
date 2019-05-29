@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Validator;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,6 +51,11 @@ class Flux extends Model
         }
 
         return true;
+    }
+
+    public function getArticles(): Collection
+    {
+        return $this->hasMany('App\Article')->get();
     }
 
     protected function isTTLBeenPassed(): bool

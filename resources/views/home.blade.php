@@ -56,7 +56,7 @@
                                     <div class="col-12">
                                         <ul class="list-unstyled mb-0">
                                             @foreach($fluxes as $flux)
-                                                <li><a href="#">{{ $flux->getTitle() }}</a></li>
+                                                <li><a href="{{ route('flux.index', $flux->getId()) }}">{{ $flux->getTitle() }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
