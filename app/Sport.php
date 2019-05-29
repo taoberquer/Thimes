@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Sport extends Model
 {
@@ -21,5 +22,10 @@ class Sport extends Model
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getArticles(): Collection
+    {
+        return $this->belongsToMany('App\Article', 'sport_articles', 'sport_id', 'article_id')->get();
     }
 }

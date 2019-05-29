@@ -70,7 +70,7 @@
                                     <div class="col-12">
                                         <ul class="list-unstyled mb-0">
                                             @foreach($sports as $sport)
-                                                <li><a href="#">{{ $sport->getName() }}</a></li>
+                                                <li><a href="{{ route('sport.index', $sport->getId()) }}">{{ $sport->getName() }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
