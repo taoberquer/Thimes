@@ -19,11 +19,11 @@
                 </p>
                 <p>Catégorie(s) :
                     @foreach( $article->sports() as $sport)
-                        {{ $sport->getName() }}
+                        <a href="{{ route('sport.index', $sport->getId()) }}">{{ $sport->getName() }}</a>
                     @endforeach
                 </p>
                 <p class="post-meta">
-                    {{ __('article.postedBy', ['flux' => $article->getFlux()->getTitle()]) }}
+                    <a href="{{ route('flux.index', $article->getFlux()->getId()) }}">{{ __('article.postedBy', ['flux' => $article->getFlux()->getTitle()]) }}</a>
 
                     {{ __('article.postedThe', [
                     'date' => $article->getPubDateWithFormat('DD/MM/Y'),
