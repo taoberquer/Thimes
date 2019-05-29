@@ -62,8 +62,8 @@
                                     <div class="dropdown-divider"></div>
                                     @if (Auth::user()->getStatus() == 'admin')
                                         <a class="dropdown-item text-muted disabled">Administration</a>
-                                        <a href="#" class="dropdown-item">Utilisateurs</a>
-                                        <a href="#" class="dropdown-item">Clubs</a>
+                                        <a href="{{ route('administration.users.index') }}" class="dropdown-item">Utilisateurs</a>
+                                        <a href="{{ route('administration.fluxes.index') }}" class="dropdown-item">Fluxs</a>
                                         <a class="dropdown-item" href="{{ route('administration.force.update') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('force-update-form').submit();">Forcer la mise à jour</a>

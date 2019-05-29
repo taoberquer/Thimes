@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/fluxes/{fluxId}', 'FluxesController@index')->name('flux.index');
+Route::get('/fluxes/{fluxId}', 'FluxController@index')->name('flux.index');
 Route::get('/sports/{sportId}', 'SportsController@index')->name('sport.index');
 
 Route::middleware('auth')->group(function () {
@@ -51,5 +51,7 @@ Route::prefix('clubs')->name('clubs.')->group(function () {
 });
 
 Route::middleware('administration')->namespace('Administration')->prefix('administration')->name('administration.')->group(function () {
-    Route::post('/force-update', 'FluxesController@forceUpdate')->name('force.update');
+    Route::post('/force-update', 'FluxController@forceUpdate')->name('force.update');
+    Route::resource('fluxes', 'FluxController')->except(['show']);
+    Route::resource('users', 'UserController')->except(['show']);
 });
