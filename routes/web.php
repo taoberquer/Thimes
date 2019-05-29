@@ -30,8 +30,14 @@ Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->gro
 
     Route::middleware('club.manage')->group(function () {
         Route::get('/', 'MainController@index')->name('index');
+        Route::get('/interesting/articles', 'MainController@interestingArticles')->name('interesting.articles');
         Route::post('/{articleId}/addArticleToClub', 'MainController@addArticleToClub')->name('addArticleToClub');
         Route::post('/{articleId}/removeAddedArticle', 'MainController@removeAddedArticle')->name('removeAddedArticle');
+        Route::prefix('category')->name('category.')->group(function () {
+            Route::get('/', 'CategoryController@index')->name('index');
+            Route::post('/{categoryId}/addCategoryToClub', 'CategoryController@addCategoryToClub')->name('addCategoryToClub');
+            Route::post('/{categoryId}/removeCategoryArticle', 'CategoryController@removeCategoryArticle')->name('removeCategoryArticle');
+        });
     });
 });
 

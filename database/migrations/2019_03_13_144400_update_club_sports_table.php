@@ -16,7 +16,7 @@ class UpdateClubSportsTable extends Migration
         Schema::table('club_sports', function (Blueprint $table) {
             $table->foreign('club_id')->references('id')->on('clubs');
             $table->foreign('sport_id')->references('id')->on('sports');
-            $table->primary('club_id', 'sport_id');
+
         });
     }
 

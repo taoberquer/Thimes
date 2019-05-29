@@ -17,9 +17,11 @@ class MainController extends Controller
         return view('club.index', compact('club'));
     }
 
-    public function showNonClubsArticles()
+    public function interestingArticles()
     {
-        dd('showNonClubsArticles');
+        $club = Auth::user()->getClub();
+
+        return view('club.articles', compact('club'));
     }
 
     public function addArticleToClub(Request $request, int $articleId)

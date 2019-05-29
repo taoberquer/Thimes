@@ -3,7 +3,28 @@
 @section('content')
     <div class="container">
         <div class="bg-white pl-3 pr-3 pt-3 pb-1 mb-4">
-            <h4 class="text-center text-dark">{{ $sport->getName() }}</h4>
+            <div class="col-6 mx-auto">
+                <div class="row justify-content-center">
+                    <h4 class="col-auto text-dark pt-2">{{ $sport->getName() }}</h4>
+                    @if (Auth::check() AND Auth::user()->getClub())
+                        @if (Auth::user()->getClub()->getSports()->get()->where('id', $sport->getId())->first())
+                            <form action="{{ route('club.category.removeCategoryArticle', $sport->getId()) }}" method="post" class="text-right">
+                                @csrf()
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-danger"><span class="font-weight-bold">x</span></button>
+                                </div>
+                            </form>
+                        @else
+                            <form action="{{ route('club.category.addCategoryToClub', $sport->getId()) }}" method="post" class="text-right">
+                                @csrf()
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-success"><span class="font-weight-bold">+</span></button>
+                                </div>
+                            </form>
+                        @endif
+                    @endif
+                </div>
+            </div>
         </div>
         @foreach($sport->getArticles() as $article)
             <div class="post-preview">

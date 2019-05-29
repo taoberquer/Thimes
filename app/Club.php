@@ -28,4 +28,9 @@ class Club extends Model
     {
         return $this->belongsToMany('App\Article', 'sport_articles', 'club_id', 'article_id');
     }
+
+    public function getSports(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Sport', 'club_sports', 'club_id', 'sport_id');
+    }
 }

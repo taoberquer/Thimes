@@ -17,6 +17,7 @@ class CreateClubSportsTable extends Migration
             $table->unsignedBigInteger('club_id');
             $table->unsignedBigInteger('sport_id');
             $table->timestamps();
+            $table->primary(['club_id', 'sport_id']);
         });
     }
 

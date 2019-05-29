@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClubSport extends Model
 {
+    protected $guarded = [];
+
     protected $hidden = [
        'club_id', 'sport_id'
     ];
@@ -17,6 +19,6 @@ class ClubSport extends Model
 
     public function getSportId(): int
     {
-        retunr $this->sport_id;
+        return $this->sport_id;
     }
 }
