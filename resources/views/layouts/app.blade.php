@@ -38,8 +38,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="Chercher" placeholder="Nom du club" aria-label="Chercher">
+                        <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('clubs.search') }}">
+                            <input class="form-control mr-sm-2" type="Chercher" name="query" placeholder="Nom du club" aria-label="Chercher">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher un club</button>
                         </form>
                         <!-- Authentication Links -->

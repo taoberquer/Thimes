@@ -42,6 +42,7 @@ Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->gro
 });
 
 Route::middleware('auth')->prefix('clubs')->name('clubs.')->group(function () {
+    Route::get('/search', 'ClubsController@search')->name('search');
     Route::prefix('/{clubId}')->group(function () {
         Route::get('/rss', 'ClubsController@showRss')->name('rss');
     });
