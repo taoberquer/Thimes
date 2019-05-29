@@ -39,8 +39,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="Chercher" placeholder="Chercher" aria-label="Chercher">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
+                            <input class="form-control mr-sm-2" type="Chercher" placeholder="Nom du club" aria-label="Chercher">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher un club</button>
                         </form>
                         <!-- Authentication Links -->
                         @guest
@@ -62,8 +62,8 @@
                                     @if (empty(Auth::user()->getClub()))
                                     <a class="dropdown-item" href="{{ route('club.create') }}">Créer un club</a>
                                     @else
-                                    <a class="dropdown-item" href="#">Club</a>
-                                    <a class="dropdown-item" href="#">Flux RSS</a>
+                                    <a class="dropdown-item" href="{{ route('club.index') }}">Club</a>
+                                    <a class="dropdown-item" href="{{ route('clubs.rss', Auth::user()->getClub()->getId()) }}">Flux RSS</a>
                                     @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

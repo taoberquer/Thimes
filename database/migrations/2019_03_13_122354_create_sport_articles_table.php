@@ -15,10 +15,10 @@ class CreateSportArticlesTable extends Migration
     {
         Schema::create('sport_articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('sport_id');
-            $table->unsignedBigInteger('club_id');
             $table->unsignedBigInteger('article_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('sport_id')->nullable();
+            $table->unsignedBigInteger('club_id')->nullable();
         });
     }
 

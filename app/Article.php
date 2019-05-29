@@ -85,7 +85,7 @@ class Article extends Model
             'hash' => 'required',
             'author' => 'nullable',
             'comments' => 'nullable',
-            'description' => 'nullable',
+            'description' => 'nullable|string',
             'guid' => 'nullable|unique:articles',
             'pubDate' => 'nullable',
             'source' => 'nullable',
@@ -107,7 +107,19 @@ class Article extends Model
                 'source' => $articleFields['source'],
             ]);
 
-            $article->save();
+            if ($article->save()) {
+                $user = User::where('email', 'engine@engine.com')->first();
+
+                foreach ($params->category as $category) {
+                    $sport = Sport::firstOrCreate(['name' => $category]);
+
+                    SportArticle::create([
+                        'article_id' => $article->getId(),
+                        'user_id' => $user->getId(),
+                        'sport_id' => $sport->getId(),
+                    ]);
+                }
+            }
         }
     }
 

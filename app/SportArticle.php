@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class SportArticle extends Model
 {
-    protected $hidden = [
-         'id'
+    protected $guarded = [];
 
-      ];
+    public $timestamps = false;
 
     public function getId(): int
     {

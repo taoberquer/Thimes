@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use function Sodium\randombytes_random16;
 
 class UserTableSeeder extends Seeder
 {
@@ -26,5 +27,12 @@ class UserTableSeeder extends Seeder
             'status' => 'admin',
         ]);
         $user->save();
+
+        User::create([
+           'name' => 'Engine',
+           'email' => 'engine@engine.com',
+           'password' => bcrypt(uniqid()),
+           'status' => 'engine'
+        ]);
     }
 }

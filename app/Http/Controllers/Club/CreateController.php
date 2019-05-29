@@ -21,6 +21,7 @@ class CreateController extends Controller
         $club = Club::create(['name' => $validated['name']]);
 
         Auth::user()->club_id = $club->getId();
+        Auth::user()->status = 'club';
         Auth::user()->save();
 
         return redirect()->route('club.index');

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model
 {
+    protected $guarded = [];
+
     protected $hidden = [
          'id', 'name'
 

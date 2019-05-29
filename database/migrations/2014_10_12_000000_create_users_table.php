@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('status', ['user', 'club', 'admin'])->default('user');
+            $table->enum('status', ['user', 'club', 'admin', 'engine'])->default('user');
             $table->unsignedBigInteger('club_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

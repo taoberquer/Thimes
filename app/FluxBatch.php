@@ -5,6 +5,7 @@ namespace App;
 use App\Models\CustomSimpleXMLElement;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 
 class FluxBatch extends Model
 {
@@ -42,6 +43,7 @@ class FluxBatch extends Model
 
     public function addArticleByCustomSimpleXMLElement(CustomSimpleXMLElement $param)
     {
+
         $param->addChild('flux_id', $this->belongsToFlux()->getId());
         $param->addChild('flux_batch', $this->getId());
 
@@ -51,7 +53,7 @@ class FluxBatch extends Model
         $param->addChildIfDoNotExist('pubDate');
         $param->addChildIfDoNotExist('source');
 
-        $param->addChild('hash', md5($param->title . $param->author . $param->link));
+        $param->addChild('hash', md5($param->title));
 
         Article::make($param);
     }
