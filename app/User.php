@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->password;
     }
 
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
     public function getRememberToken(): ?string
     {
         return $this->remember_token;

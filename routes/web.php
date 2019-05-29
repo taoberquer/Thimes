@@ -41,9 +41,11 @@ Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->gro
     });
 });
 
-Route::middleware('auth')->prefix('clubs')->name('clubs.')->group(function () {
+Route::prefix('clubs')->name('clubs.')->group(function () {
+    Route::get('/', 'ClubsController@index')->name('index');
     Route::get('/search', 'ClubsController@search')->name('search');
     Route::prefix('/{clubId}')->group(function () {
+        Route::get('/', 'ClubsController@show')->name('show');
         Route::get('/rss', 'ClubsController@showRss')->name('rss');
     });
 });

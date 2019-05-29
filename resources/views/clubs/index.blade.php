@@ -2,14 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="bg-white p-3 mb-5">
-            <h5>Résulat de la recherche</h5>
-        </div>
         <div class="row">
-            @if ($clubs->get()->count() == 0)
-                <p class="text-center col-12">Aucun résulat</p>
-            @endif
-            @foreach($clubs->get() as $club)
+            @foreach($clubs as $club)
                 <div class="col-md-3 col-sm-12">
                     <div class="card bg-light mb-3">
                         <div class="card-header text-center"><a href="{{ route('clubs.show', $club->getId()) }}">{{ $club->getName() }}</a></div>

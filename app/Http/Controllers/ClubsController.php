@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class ClubsController extends Controller
 {
-    public function showRss(Request $request, int $clubId)
+    public function index()
     {
-        dd('showRss');
+        $clubs = Club::all()->sortBy('name');
+
+        return view('clubs.index', compact('clubs'));
     }
 
     public function search(Request $request)
@@ -17,5 +19,21 @@ class ClubsController extends Controller
         $clubs = Club::where('name', 'LIKE', '%' . $request->get('query') . '%');
 
         return view('clubs.search', compact('clubs'));
+    }
+
+    public function show(Request $request, int $clubId)
+    {
+        $club = Club::find($clubId);
+
+        if (empty($club->first())) {
+            return redirect()->route('home')->with('error', 'Ce club n\'éxiste pas');
+        }
+
+        return view('clubs.show', compact('club'));
+    }
+
+    public function showRss(Request $request, int $clubId)
+    {
+        dd('showRss');
     }
 }
