@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->remember_token;
     }
+
+    public function getClub(): ?Club
+    {
+        return $this->belongsTo('App\Club', 'club_id')->first();
+    }
 }

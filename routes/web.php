@@ -14,3 +14,14 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->group(function () {
+    Route::middleware('club.create')->group(function () {
+        Route::get('/create', 'CreateController@create')->name('create');
+        Route::post('/create', 'CreateController@store')->name('store');
+    });
+
+    Route::middleware('club.manage')->group(function () {
+        Route::get('/', 'MainController@index')->name('index');
+    });
+});

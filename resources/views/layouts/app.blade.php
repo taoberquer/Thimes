@@ -59,9 +59,12 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Paramètres</a>
-                                    <a class="dropdown-item" href="#">Créer un club</a>
+                                    @if (empty(Auth::user()->getClub()))
+                                    <a class="dropdown-item" href="{{ route('club.create') }}">Créer un club</a>
+                                    @else
                                     <a class="dropdown-item" href="#">Club</a>
                                     <a class="dropdown-item" href="#">Flux RSS</a>
+                                    @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -78,6 +81,46 @@
                 </div>
             </div>
         </nav>
+        <div class="row">
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-dismissible fade show col-12">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible fade show col-12">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($message = Session::get('warning'))
+                <div class="alert alert-warning alert-dismissible fade show col-12">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($message = Session::get('info'))
+                <div class="alert alert-info alert-dismissible fade show col-12">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show col-12">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
 
         <main class="py-4">
             @yield('content')
