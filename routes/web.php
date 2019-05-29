@@ -17,6 +17,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/fluxes/{fluxId}', 'FluxesController@index')->name('flux.index');
 Route::get('/sports/{sportId}', 'SportsController@index')->name('sport.index');
 
+Route::middleware('auth')->group(function () {
+   Route::get('/settings', 'SettingsController@edit')->name('settings.edit');
+   Route::put('/settings', 'SettingsController@update')->name('settings.update');
+});
+
 Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->group(function () {
     Route::middleware('club.create')->group(function () {
         Route::get('/create', 'CreateController@create')->name('create');

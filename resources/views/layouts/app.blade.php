@@ -58,7 +58,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Paramètres</a>
+                                    <a class="dropdown-item" href="{{ route('settings.edit') }}">Paramètres</a>
                                     @if (empty(Auth::user()->getClub()))
                                     <a class="dropdown-item" href="{{ route('club.create') }}">Créer un club</a>
                                     @else
