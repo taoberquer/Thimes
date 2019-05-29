@@ -18,18 +18,19 @@
 
         <section class="row p-4">
             @foreach($club->articles as $article)
-                <div class="card col-12">
+                <div class="card col-12 mb-4">
                     <div class="card-body row">
                         <div class="col-12">
                             <div class="row">
-                                <h5 class="card-title col"><a href="#">Titre de l'article</a></h5>
-                                <a href="#" class="card-link col-auto">
-                                    <button class="btn btn-danger">Supprimmer du club</button>
-                                </a>
+                                <h5 class="card-title col"><a href="{{ $article->getUrl() }}">{{ $article->getTitle() }}</a></h5>
+                                <form action="{{ route('club.removeAddedArticle', $article->getId()) }}" method="post" class="col-auto">
+                                    @csrf()
+                                    <button type="submit" class="btn btn-danger">Retirer du club</button>
+                                </form>
                             </div>
                         </div>
-                        <h6 class="card-subtitle mb-2 col-12"><a href="#" class="text-muted small">Source de l'article</a></h6>
-                        <p class="card-text col-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error est excepturi, id impedit libero, minus mollitia nesciunt odio pariatur perferendis quam quis recusandae rerum similique sint tempore, tenetur ut veritatis.</p>
+                        <h6 class="card-subtitle mb-2 col-12"><a href="{{ $article->getFlux()->getUrl() }}" class="text-muted small">{{ $article->getFlux()->getTitle() }}</a></h6>
+                        <p class="card-text col-12">{{$article->getDescription()}}</p>
                     </div>
                 </div>
             @endforeach
