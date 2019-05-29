@@ -49,3 +49,7 @@ Route::prefix('clubs')->name('clubs.')->group(function () {
         Route::get('/rss', 'ClubsController@showRss')->name('rss');
     });
 });
+
+Route::middleware('administration')->namespace('Administration')->prefix('administration')->name('administration.')->group(function () {
+    Route::post('/force-update', 'FluxesController@forceUpdate')->name('force.update');
+});

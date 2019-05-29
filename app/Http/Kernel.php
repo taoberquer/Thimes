@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdministrationMiddleware;
 use App\Http\Middleware\CreateClubMiddleware;
 use App\Http\Middleware\ManageClubMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'club.create' => CreateClubMiddleware::class,
         'club.manage' => ManageClubMiddleware::class,
+        'administration' => AdministrationMiddleware::class,
     ];
 
     /**

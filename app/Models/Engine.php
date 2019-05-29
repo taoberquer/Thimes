@@ -15,14 +15,14 @@ class Engine
         $this->fluxCollection = $collection;
     }
 
-    public function run()
+    public function run(bool $force = false)
     {
         if ($this->isRunning()) {
             throw new \Exception('Impossible de lancer, une mise à jour est déjà en cours.');
         }
 
         foreach ($this->fluxCollection as $flux) {
-            if ($flux->canBeLoaded()) {
+            if ($flux->canBeLoaded() || $force) {
                 $this->load(FluxBatch::make($flux->getId()));
             }
         }

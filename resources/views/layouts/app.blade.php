@@ -59,8 +59,17 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('settings.edit') }}">Paramètres</a>
+                                    <div class="dropdown-divider"></div>
                                     @if (Auth::user()->getStatus() == 'admin')
-                                        <a class="dropdown-item" href="{{ route('club.create') }}">Administration</a>
+                                        <a class="dropdown-item text-muted disabled">Administration</a>
+                                        <a href="#" class="dropdown-item">Utilisateurs</a>
+                                        <a href="#" class="dropdown-item">Clubs</a>
+                                        <a class="dropdown-item" href="{{ route('administration.force.update') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('force-update-form').submit();">Forcer la mise à jour</a>
+                                        <form id="force-update-form" action="{{ route('administration.force.update') }}" method="POST">
+                                            @csrf()
+                                        </form>
                                     @elseif (empty(Auth::user()->getClub()))
                                     <a class="dropdown-item" href="{{ route('club.create') }}">Créer un club</a>
                                     @else

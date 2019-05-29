@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
@@ -116,6 +117,10 @@ class Article extends Model
 
             if ($article->save()) {
                 $user = User::where('email', 'engine@engine.com')->first();
+
+                if (!empty(Auth::user())) {
+                    $user = Auth::user();
+                }
 
                 foreach ($params->category as $category) {
                     $sport = Sport::firstOrCreate(['name' => $category]);
