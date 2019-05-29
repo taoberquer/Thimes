@@ -5,6 +5,8 @@ namespace App;
 use App\Models\CustomSimpleXMLElement;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
@@ -71,6 +73,11 @@ class Article extends Model
     public function getFlux(): Flux
     {
         return $this->belongsToFlux();
+    }
+
+    public function sports(): Collection
+    {
+        return $this->belongsToMany('App\Sport', 'sport_articles', 'article_id', 'sport_id')->get();
     }
 
     public static function make(CustomSimpleXMLElement $params)

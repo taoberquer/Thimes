@@ -18,16 +18,32 @@
                                 <p>
                                     {{ $article->getDescription() }}
                                 </p>
-
+                            <p>Catégorie(s) :
+                            @foreach( $article->sports() as $sport)
+                                {{ $sport->getName() }}
+                            @endforeach
+                            </p>
                             <p class="post-meta">
                                 {{ __('article.postedBy', ['flux' => $article->getFlux()->getTitle()]) }}
 
                                 {{ __('article.postedThe', [
                                 'date' => $article->getPubDateWithFormat('DD/MM/Y'),
                                 'hour' => $article->getPubDateWithFormat('HH:mm')]) }}
-
                             </p>
                         </div>
+                        @if (Auth::check() AND Auth::user()->getClub())
+                            @if (Auth::user()->getClub()->articles()->get()->where('id', $article->getId())->first())
+                                    <form action="{{ route('club.removeAddedArticle', $article->getId()) }}" method="post" class="text-right">
+                                        @csrf()
+                                        <button type="submit" class="btn btn-danger">Retirer du club</button>
+                                    </form>
+                            @else
+                                <form action="{{ route('club.addArticleToClub', $article->getId()) }}" method="post" class="text-right">
+                                    @csrf()
+                                    <button type="submit" class="btn btn-success">Ajouter au club</button>
+                                </form>
+                            @endif
+                        @endif
                         <hr>
                         @endforeach
                     </div>
