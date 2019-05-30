@@ -51,9 +51,18 @@ class Article extends Model
         return $this->url;
     }
 
-    public function getSource(): string
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function getSource(): ?string
     {
         return $this->source;
+    }
+    public function getComment(): ?string
+    {
+        return $this->comments;
     }
 
     public function getPubDate(): Carbon

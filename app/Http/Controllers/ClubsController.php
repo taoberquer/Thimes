@@ -34,6 +34,12 @@ class ClubsController extends Controller
 
     public function showRss(Request $request, int $clubId)
     {
-        dd('showRss');
+        $club = Club::find($clubId);
+
+        if (empty($club)) {
+            return redirect()->route('home')->with('error', 'Le club est introuvable');
+        }
+
+        return response()->view('clubs.rss', compact('club'))->withHeaders(['Content-Type' => 'text/xml']);
     }
 }
