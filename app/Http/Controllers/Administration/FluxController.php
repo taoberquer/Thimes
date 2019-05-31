@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Administration;
 
+use App\Flux;
+use App\Models\Engine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class FluxController extends Controller
 {
+    public function forceUpdate()
+    {
+        $engine = new Engine(Flux::allAvailable());
+        $engine->run(true);
+        return redirect()->route('home')->with('success', 'Les sources ont été mises à jour');
+    }
+
     /**
      * Display a listing of the resource.
      *

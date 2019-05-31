@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/fluxes/{fluxId}', 'FluxController@index')->name('flux.index');
+Route::get('/fluxes/{fluxId}', 'FluxesController@index')->name('flux.index');
 Route::get('/sports/{sportId}', 'SportsController@index')->name('sport.index');
 
 Route::middleware('auth')->group(function () {
