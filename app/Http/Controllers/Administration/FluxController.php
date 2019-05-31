@@ -23,17 +23,9 @@ class FluxController extends Controller
      */
     public function index()
     {
-        return view('administration.');
-    }
+        $fluxes = Flux::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('administration.fluxes.index', compact('fluxes'));
     }
 
     /**
@@ -44,18 +36,15 @@ class FluxController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'ttl' => 'required|integer'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Flux::create($validated);
+
+        return redirect()->route('administration.fluxes.index')->with('success', 'Flux ajouté.');
     }
 
     /**
@@ -66,7 +55,9 @@ class FluxController extends Controller
      */
     public function edit($id)
     {
-        //
+        $flux = Flux::find($id);
+
+        return view('administration.fluxes.edit', compact('flux'));
     }
 
     /**
@@ -78,7 +69,29 @@ class FluxController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $flux = Flux::find($id);
+
+        if (!$flux) {
+            return redirect()->route('administration.fluxes.index')->with('error', 'Flux introuvable.');
+        }
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'ttl' => 'required|',
+            'active' => 'sometimes'
+        ]);
+
+        if (empty($validated['active'])) {
+            $validated['active'] = false;
+        }
+
+
+
+        $flux->update($validated);
+
+        return redirect()->route('administration.fluxes.edit', $flux->getId())
+            ->with('success', 'Flux mis à jour.');
     }
 
     /**
@@ -89,6 +102,12 @@ class FluxController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $flux = Flux::find($id);
+
+        if ($flux) {
+            $flux->delete();
+        }
+
+        return redirect()->route('administration.fluxes.index')->with('success', 'Flux supprimé.');
     }
 }

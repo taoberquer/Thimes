@@ -3,16 +3,21 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Validator;
 use Illuminate\Database\Eloquent\Model;
 
 class Flux extends Model
 {
+    use SoftDeletes;
+
     protected $hidden = [
              'id', 'title', 'url', 'ttl', 'active',
              'active', 'date_success'
-          ];
+    ];
+
+    protected $guarded = [];
 
     public function getId(): int
     {

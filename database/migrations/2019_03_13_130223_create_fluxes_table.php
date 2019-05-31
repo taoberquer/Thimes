@@ -14,6 +14,7 @@ class CreateFluxesTable extends Migration
     public function up()
     {
         Schema::create('fluxes', function (Blueprint $table) {
+            $table->softDeletes();
             $table->bigIncrements('id');
             $table->char('title');
             $table->text('url');

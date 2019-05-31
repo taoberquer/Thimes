@@ -100,9 +100,6 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user) {
-            if ($user->getClub()) {
-                $user->getClub()->delete();
-            }
             $user->delete();
         }
 
