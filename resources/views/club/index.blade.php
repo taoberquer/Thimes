@@ -10,9 +10,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('club.category.index') }}">Catégories liées au club</a>
                 </li>
-                <li class="nav-item">
+{{--                <li class="nav-item">
                     <a class="nav-link" href="{{ route('club.interesting.articles') }}">Articles qui peuvent vous intéresser</a>
-                </li>
+                </li>--}}
             </ul>
             <a href="{{ route('clubs.rss', $club->getId()) }}">
                 <button class="btn btn-info text-white">Afficher le flux Rss</button>
