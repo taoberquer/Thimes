@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Administration;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,17 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $users = User::all()->where('status', '!=', 'engine')->except([Auth::id()]);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('administration.users.index', compact('users'));
     }
 
     /**
@@ -35,18 +29,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $validated['password'] = bcrypt($validated['password']);
+
+        User::create($validated);
+
+        return redirect()->route('administration.users.index')->with('success', 'Utilisateur ajouté.');
     }
 
     /**
@@ -57,7 +50,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('administration.users.edit', compact('user'));
     }
 
     /**
@@ -69,7 +64,29 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('administration.users.index')->with('error', 'Utilisateur introuvable.');
+        }
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->getId(),
+            'password' => 'sometimes|confirmed'
+        ]);
+
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+
+        if (!empty($validated['password'])) {
+            $user->password = bcrypt($validated['password']);
+        }
+
+        $user->save();
+
+        return redirect()->route('administration.users.edit', $user->getId())
+            ->with('success', 'Utilisateur mis à jour.');
     }
 
     /**
@@ -80,6 +97,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user) {
+            if ($user->getClub()) {
+                $user->getClub()->delete();
+            }
+            $user->delete();
+        }
+
+        return redirect()->route('administration.users.index')->with('success', 'Utilisateur supprimé.');
     }
 }

@@ -55,6 +55,6 @@ Route::prefix('clubs')->name('clubs.')->group(function () {
 Route::middleware('administration')->namespace('Administration')->prefix('administration')->name('administration.')
     ->group(function () {
         Route::post('/force-update', 'FluxController@forceUpdate')->name('force.update');
-        Route::resource('fluxes', 'FluxController')->except(['show']);
-        Route::resource('users', 'UserController')->except(['show']);
+        Route::resource('fluxes', 'FluxController')->except(['create', 'show']);
+        Route::resource('users', 'UserController')->except(['create', 'show']);
     });
