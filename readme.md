@@ -1,71 +1,78 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Thimes | Flux-RSS
+***
 
-## About Laravel
+## Mise en situation 
+La Maison des Ligues de Lorraine (M2L) a pour mission de fournir des espaces et des services aux différentes ligues sportives régionales et à d’autres structures hébergées. La M2L est une structure financée par le Conseil Régional de Lorraine dont l’administration est déléguée au Comité Régional Olympique et Sportif de Lorraine (CROSL).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Le projet est constitué autour d’une plate-forme Web qui récupère régulièrement des articles disponibles au format RSS.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologie 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Cette Apllication Web a été construit avec le framework [Laravel](https://laravel.com/).
 
-## Learning Laravel
+Laravel est un framework web open-source écrit en PHP2 respectant le principe modèle-vue-contrôleur et entièrement développé en programmation orientée objet. Laravel est distribué sous licence MIT, avec ses sources hébergées sur GitHub. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Laravel utilise Eloquent comme ORM ainsi que Blade comme moteur de template. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+## Installation 
 
-## Laravel Sponsors
+#### Prérequis
+* Php
+* [Composer](https://getcomposer.org/)
+* [Vagrant](https://www.vagrantup.com/) 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+L'installation de l'application web peut se faire de plusieurs façon differentes mais la plus portable serai d'utiliser la box Homestead via Vagrant.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+Effectuer un git clone de notre repo sur votre machine.
+    
+    git clone https://github.com/taoberquer/Thimes.git
+    
+Ajouter la box Homestead à Vagrant.
 
-## Contributing
+    vagrant box add laravel/homestead
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Rendez-vous ensuite dans le projet pour installer la box Homestead en utilisant Composer.
 
-## Security Vulnerabilities
+    composer require laravel/homestead --dev
+    
+    
+Une fois Homestead installer dans le projet, utiliser la commande make pour générer les fichiers Vagrantfile ainsi que Homestead.yaml
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Mac/Linux:
 
-## License
+    php vendor/bin/homestead make
+    
+Windows: 
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    vendor\\bin\\homestead make
+    
+Résolution des Hosts. Redirigez les hosts vers votre projet. 
+Sous Mac/Linux ajouter la ligne qui suivra dans /etc/hosts, sous windows dans C:\Windows\System32\drivers\etc\hosts.
+
+    192.168.10.10  homestead.test
+    
+Rendez vous dans votre naviguateur pour aller à l'url suivant.
+
+    http://homestead.test
+    
+Dans votre projet copier le .env.
+
+    cp .env.example .env
+    
+Générer également une clé.
+    
+    php artisan key:generate
+    
+Installation des dépendance pour l'application. 
+
+    composer install
+    
+Pour la base de données ainsi que les seeders
+
+    php artisan migrate:fresh --seed
+
+## Auteurs
+
+* **Tao Berquer** - [www.taoberquer.fr](www.taoberquer.fr)
+* **Alexandre Kaprielian** - [www.alexandre-kaprielian.com](www.alexandre-kaprielian.com)
