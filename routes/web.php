@@ -18,8 +18,8 @@ Route::get('/fluxes/{fluxId}', 'FluxesController@index')->name('flux.index');
 Route::get('/sports/{sportId}', 'SportsController@index')->name('sport.index');
 
 Route::middleware('auth')->group(function () {
-   Route::get('/settings', 'SettingsController@edit')->name('settings.edit');
-   Route::put('/settings', 'SettingsController@update')->name('settings.update');
+    Route::get('/settings', 'SettingsController@edit')->name('settings.edit');
+    Route::put('/settings', 'SettingsController@update')->name('settings.update');
 });
 
 Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->group(function () {
@@ -35,8 +35,10 @@ Route::middleware('auth')->namespace('Club')->prefix('club')->name('club.')->gro
         Route::post('/{articleId}/removeAddedArticle', 'MainController@removeAddedArticle')->name('removeAddedArticle');
         Route::prefix('category')->name('category.')->group(function () {
             Route::get('/', 'CategoryController@index')->name('index');
-            Route::post('/{categoryId}/addCategoryToClub', 'CategoryController@addCategoryToClub')->name('addCategoryToClub');
-            Route::post('/{categoryId}/removeCategoryArticle', 'CategoryController@removeCategoryArticle')->name('removeCategoryArticle');
+            Route::post('/{categoryId}/addCategoryToClub', 'CategoryController@addCategoryToClub')
+                ->name('addCategoryToClub');
+            Route::post('/{categoryId}/removeCategoryArticle', 'CategoryController@removeCategoryArticle')
+                ->name('removeCategoryArticle');
         });
     });
 });
@@ -50,8 +52,9 @@ Route::prefix('clubs')->name('clubs.')->group(function () {
     });
 });
 
-Route::middleware('administration')->namespace('Administration')->prefix('administration')->name('administration.')->group(function () {
-    Route::post('/force-update', 'FluxController@forceUpdate')->name('force.update');
-    Route::resource('fluxes', 'FluxController')->except(['show']);
-    Route::resource('users', 'UserController')->except(['show']);
-});
+Route::middleware('administration')->namespace('Administration')->prefix('administration')->name('administration.')
+    ->group(function () {
+        Route::post('/force-update', 'FluxController@forceUpdate')->name('force.update');
+        Route::resource('fluxes', 'FluxController')->except(['show']);
+        Route::resource('users', 'UserController')->except(['show']);
+    });

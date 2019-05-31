@@ -7,7 +7,6 @@ use App\Flux;
 use App\Sport;
 use Illuminate\Http\Request;
 
-
 class HomeController extends Controller
 {
     /**
